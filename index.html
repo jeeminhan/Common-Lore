@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,43 +25,89 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
-        .font-display { font-family: 'Playfair Display', serif; }
-        .font-body { font-family: 'Inter', sans-serif; }
-        .glow { box-shadow: 0 0 30px rgba(123, 31, 162, 0.3); }
-        .fade-in { animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-        .pulse-subtle { animation: pulse 2s ease-in-out infinite; }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glow {
+            box-shadow: 0 0 30px rgba(123, 31, 162, 0.3);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .pulse-subtle {
+            animation: pulse 2s ease-in-out infinite;
+        }
     </style>
 </head>
-    <body class="bg-navy min-h-screen font-body relative">
+
+<body class="bg-navy min-h-screen font-body relative">
     <div id="app"></div>
 
     <!-- Feedback Button (Fixed) -->
-    <button onclick="openFeedback()" id="feedback-toggle" class="fixed bottom-6 right-6 z-40 bg-purple/80 backdrop-blur-sm text-white p-3 rounded-full shadow-lg hover:bg-purple transition-all transform hover:scale-110 group border border-white/20">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
-        <span class="absolute right-full mr-3 bg-navy/90 text-white px-3 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Give Feedback</span>
+    <button onclick="openFeedback()" id="feedback-toggle"
+        class="fixed bottom-6 right-6 z-40 bg-purple/80 backdrop-blur-sm text-white p-3 rounded-full shadow-lg hover:bg-purple transition-all transform hover:scale-110 group border border-white/20">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+        </svg>
+        <span
+            class="absolute right-full mr-3 bg-navy/90 text-white px-3 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Give
+            Feedback</span>
     </button>
 
     <!-- Feedback Modal -->
-    <div id="feedback-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/80 backdrop-blur-md hidden fade-in">
+    <div id="feedback-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/80 backdrop-blur-md hidden fade-in">
         <div class="bg-cream w-full max-w-2xl h-[80vh] rounded-3xl overflow-hidden relative shadow-2xl flex flex-col">
             <div class="p-4 bg-white border-b flex justify-between items-center">
                 <h3 class="font-display font-bold text-navy text-lg">Common Lore Feedback</h3>
                 <button onclick="closeFeedback()" class="text-gray-400 hover:text-navy p-1 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </button>
             </div>
             <div class="flex-1 overflow-hidden relative">
                 <div id="modal-loading" class="absolute inset-0 flex items-center justify-center bg-cream z-10">
                     <div class="w-8 h-8 border-4 border-purple border-t-transparent rounded-full animate-spin"></div>
                 </div>
-                <iframe 
-                    id="feedback-iframe"
-                    src="https://docs.google.com/forms/d/e/1FAIpQLScl9WE8vEnZKVd3vPW6/viewform?embedded=true" 
+                <iframe id="feedback-iframe"
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdPBg6plGCeigKzhRRuNzFqRxxlGmnlKr9OWdK1tHP8mi93mg/viewform?embedded=true"
                     class="w-full h-full border-0"
-                    onload="document.getElementById('modal-loading').classList.add('hidden')"
-                >Loading…</iframe>
+                    onload="document.getElementById('modal-loading').classList.add('hidden')">Loading…</iframe>
             </div>
             <div id="auto-popup-note" class="p-3 bg-purple text-white text-xs text-center hidden">
                 Thank you for playing Common Lore! We'd love to hear your thoughts.
@@ -69,171 +116,171 @@
     </div>
 
     <script>
-// ============== CARD DATA ==============
-const SUITS = {
-    spades: {
-        name: "The Career Bridge",
-        theme: "Professional & Vision",
-        symbol: "♠",
-        color: "spade",
-        bgLight: "bg-blue-50",
-        action: { title: "The Referral", text: "Nominate another player to answer a question of your choice from your hand." },
-        cards: [
-            { rank: "K", text: "If you could give a speech to the leaders of your industry today, what truth would you want them to hear?" },
-            { rank: "Q", text: "How could your future career be used to serve or \"bless\" your community back home one day?" },
-            { rank: "J", text: "What does \"success\" look like to your parents, and how does that compare to your own definition?" },
-            { rank: "10", text: "When you return home, what is the first \"big problem\" you hope your new expertise will help solve?" },
-            { rank: "9", text: "Is there someone you are hoping to connect with professionally right now? How can we help?" },
-            { rank: "8", text: "Who is a leader from your home country that you would want to introduce to your American friends?" },
-            { rank: "7", text: "If visas and paperwork weren't an issue, what would be your \"dream first step\" after graduation?" },
-            { rank: "6", text: "What is a strength you've discovered in yourself only after moving to a different country?" },
-            { rank: "5", text: "How do your personal values or faith change the kind of company you'd be willing to work for?" },
-            { rank: "4", text: "What is the most surprising difference between an interview back home vs. an interview here?" },
-            { rank: "3", text: "What's the hardest part about translating your life story into a one-page U.S. resume?" },
-            { rank: "2", text: "What was your very first \"dream job\" when you were a child?" },
-        ]
-    },
-    hearts: {
-        name: "The Hospitality Bridge",
-        theme: "Oikos & Belonging",
-        symbol: "♥",
-        color: "heart",
-        bgLight: "bg-red-50",
-        action: { title: "The Shared Table", text: "Everyone at the table answers the last question asked." },
-        cards: [
-            { rank: "K", text: "What is a tradition from your family that you hope to pass on to your own children one day?" },
-            { rank: "Q", text: "If you could \"teleport\" one person from home to sit at this table for an hour, who would it be?" },
-            { rank: "J", text: "What makes a place feel like \"home\" to you—is it the people, the smells, or a feeling?" },
-            { rank: "10", text: "In what specific way do you want to be a blessing to your \"household\" (oikos) right now?" },
-            { rank: "9", text: "What is the most \"un-homelike\" thing about living in an American dorm or apartment?" },
-            { rank: "8", text: "How can friends here best support you when you are feeling the \"weight\" of being away?" },
-            { rank: "7", text: "What is a childhood story or \"fable\" your parents told you that you'll never forget?" },
-            { rank: "6", text: "How do people in your country usually welcome a stranger into their home?" },
-            { rank: "5", text: "If I were to pray for your family today, what is the \"big hope\" or \"big worry\" on their hearts?" },
-            { rank: "4", text: "Who in your family was your biggest champion in getting you here? What did they sacrifice?" },
-            { rank: "3", text: "What is a \"ritual\" from home (like making tea or a morning routine) that you keep alive here?" },
-            { rank: "2", text: "What is the first thing you want to eat the moment you land in your home country?" },
-        ]
-    },
-    diamonds: {
-        name: "The Cultural Bridge",
-        theme: "Identity & Wisdom",
-        symbol: "♦",
-        color: "diamond",
-        bgLight: "bg-amber-50",
-        action: { title: "The Translator", text: "Choose a player to explain their answer using a metaphor or a word from your native language." },
-        cards: [
-            { rank: "K", text: "What does \"Honor\" mean to you, and how do you show it to others in a culture that feels very \"informal\"?" },
-            { rank: "Q", text: "How does your community back home celebrate the biggest milestones of life?" },
-            { rank: "J", text: "How do you decide which parts of American culture to \"adopt\" and which to \"reject\"?" },
-            { rank: "10", text: "What do people here often get wrong about your culture that you'd love to correct?" },
-            { rank: "9", text: "How does your family's faith or worldview shape the way you handle conflict?" },
-            { rank: "8", text: "What's a historical event from your nation that you wish every American knew about?" },
-            { rank: "7", text: "In your culture, who is considered a \"hero,\" and what does that tell us about what your people value?" },
-            { rank: "6", text: "What is the \"Good Life\"? What kind of music or songs make you think of it?" },
-            { rank: "5", text: "How has being in the U.S. changed the way you look at your own home country?" },
-            { rank: "4", text: "If you could give every American one \"memory\" from your childhood to help them understand your culture, what would it be?" },
-            { rank: "3", text: "What is a piece of \"grandmotherly wisdom\" or a proverb you think about when life gets hard?" },
-            { rank: "2", text: "What is one thing Americans do that they think is polite, but feels \"off\" to you?" },
-        ]
-    },
-    clubs: {
-        name: "The Scientific Bridge",
-        theme: "Creation & Wonder",
-        symbol: "♣",
-        color: "club",
-        bgLight: "bg-green-50",
-        action: { title: "The Experiment", text: "You may \"veto\" a question and draw a new card, or \"challenge\" another player to answer your card instead." },
-        cards: [
-            { rank: "K", text: "If you could ask the Creator of the Universe one scientific question, what would it be?" },
-            { rank: "Q", text: "How do you personally balance the \"seen\" physical world with the \"unseen\" spiritual one?" },
-            { rank: "J", text: "In your research, have you ever found a pattern that felt \"too perfect\" to be an accident?" },
-            { rank: "10", text: "If you had unlimited funding to help \"the least of these\" back home using your major, where would you start?" },
-            { rank: "9", text: "What is the toughest ethical choice a scientist in your field has to make?" },
-            { rank: "8", text: "Do you find that people at your university treat \"Science\" like it's a religion?" },
-            { rank: "7", text: "How could your specific expertise be used as a \"platform\" for doing good globally?" },
-            { rank: "6", text: "If the universe was designed by an Artist, what does your field of study reveal about the Artist's personality?" },
-            { rank: "5", text: "Have you ever felt a sense of \"awe\" or \"worship\" while looking at a complex equation or microscope?" },
-            { rank: "4", text: "What is the biggest scientific or technical challenge your home country is currently facing?" },
-            { rank: "3", text: "Do you think science and faith are two different languages, or are they telling the same story?" },
-            { rank: "2", text: "What is the most \"beautiful\" or \"elegant\" thing you've learned about the universe lately?" },
-        ]
-    }
-};
+        // ============== CARD DATA ==============
+        const SUITS = {
+            spades: {
+                name: "The Career Bridge",
+                theme: "Professional & Vision",
+                symbol: "♠",
+                color: "spade",
+                bgLight: "bg-blue-50",
+                action: { title: "The Referral", text: "Nominate another player to answer a question of your choice from your hand." },
+                cards: [
+                    { rank: "K", text: "If you could give a speech to the leaders of your industry today, what truth would you want them to hear?" },
+                    { rank: "Q", text: "How could your future career be used to serve or \"bless\" your community back home one day?" },
+                    { rank: "J", text: "What does \"success\" look like to your parents, and how does that compare to your own definition?" },
+                    { rank: "10", text: "When you return home, what is the first \"big problem\" you hope your new expertise will help solve?" },
+                    { rank: "9", text: "Is there someone you are hoping to connect with professionally right now? How can we help?" },
+                    { rank: "8", text: "Who is a leader from your home country that you would want to introduce to your American friends?" },
+                    { rank: "7", text: "If visas and paperwork weren't an issue, what would be your \"dream first step\" after graduation?" },
+                    { rank: "6", text: "What is a strength you've discovered in yourself only after moving to a different country?" },
+                    { rank: "5", text: "How do your personal values or faith change the kind of company you'd be willing to work for?" },
+                    { rank: "4", text: "What is the most surprising difference between an interview back home vs. an interview here?" },
+                    { rank: "3", text: "What's the hardest part about translating your life story into a one-page U.S. resume?" },
+                    { rank: "2", text: "What was your very first \"dream job\" when you were a child?" },
+                ]
+            },
+            hearts: {
+                name: "The Hospitality Bridge",
+                theme: "Oikos & Belonging",
+                symbol: "♥",
+                color: "heart",
+                bgLight: "bg-red-50",
+                action: { title: "The Shared Table", text: "Everyone at the table answers the last question asked." },
+                cards: [
+                    { rank: "K", text: "What is a tradition from your family that you hope to pass on to your own children one day?" },
+                    { rank: "Q", text: "If you could \"teleport\" one person from home to sit at this table for an hour, who would it be?" },
+                    { rank: "J", text: "What makes a place feel like \"home\" to you—is it the people, the smells, or a feeling?" },
+                    { rank: "10", text: "In what specific way do you want to be a blessing to your \"household\" (oikos) right now?" },
+                    { rank: "9", text: "What is the most \"un-homelike\" thing about living in an American dorm or apartment?" },
+                    { rank: "8", text: "How can friends here best support you when you are feeling the \"weight\" of being away?" },
+                    { rank: "7", text: "What is a childhood story or \"fable\" your parents told you that you'll never forget?" },
+                    { rank: "6", text: "How do people in your country usually welcome a stranger into their home?" },
+                    { rank: "5", text: "If I were to pray for your family today, what is the \"big hope\" or \"big worry\" on their hearts?" },
+                    { rank: "4", text: "Who in your family was your biggest champion in getting you here? What did they sacrifice?" },
+                    { rank: "3", text: "What is a \"ritual\" from home (like making tea or a morning routine) that you keep alive here?" },
+                    { rank: "2", text: "What is the first thing you want to eat the moment you land in your home country?" },
+                ]
+            },
+            diamonds: {
+                name: "The Cultural Bridge",
+                theme: "Identity & Wisdom",
+                symbol: "♦",
+                color: "diamond",
+                bgLight: "bg-amber-50",
+                action: { title: "The Translator", text: "Choose a player to explain their answer using a metaphor or a word from your native language." },
+                cards: [
+                    { rank: "K", text: "What does \"Honor\" mean to you, and how do you show it to others in a culture that feels very \"informal\"?" },
+                    { rank: "Q", text: "How does your community back home celebrate the biggest milestones of life?" },
+                    { rank: "J", text: "How do you decide which parts of American culture to \"adopt\" and which to \"reject\"?" },
+                    { rank: "10", text: "What do people here often get wrong about your culture that you'd love to correct?" },
+                    { rank: "9", text: "How does your family's faith or worldview shape the way you handle conflict?" },
+                    { rank: "8", text: "What's a historical event from your nation that you wish every American knew about?" },
+                    { rank: "7", text: "In your culture, who is considered a \"hero,\" and what does that tell us about what your people value?" },
+                    { rank: "6", text: "What is the \"Good Life\"? What kind of music or songs make you think of it?" },
+                    { rank: "5", text: "How has being in the U.S. changed the way you look at your own home country?" },
+                    { rank: "4", text: "If you could give every American one \"memory\" from your childhood to help them understand your culture, what would it be?" },
+                    { rank: "3", text: "What is a piece of \"grandmotherly wisdom\" or a proverb you think about when life gets hard?" },
+                    { rank: "2", text: "What is one thing Americans do that they think is polite, but feels \"off\" to you?" },
+                ]
+            },
+            clubs: {
+                name: "The Scientific Bridge",
+                theme: "Creation & Wonder",
+                symbol: "♣",
+                color: "club",
+                bgLight: "bg-green-50",
+                action: { title: "The Experiment", text: "You may \"veto\" a question and draw a new card, or \"challenge\" another player to answer your card instead." },
+                cards: [
+                    { rank: "K", text: "If you could ask the Creator of the Universe one scientific question, what would it be?" },
+                    { rank: "Q", text: "How do you personally balance the \"seen\" physical world with the \"unseen\" spiritual one?" },
+                    { rank: "J", text: "In your research, have you ever found a pattern that felt \"too perfect\" to be an accident?" },
+                    { rank: "10", text: "If you had unlimited funding to help \"the least of these\" back home using your major, where would you start?" },
+                    { rank: "9", text: "What is the toughest ethical choice a scientist in your field has to make?" },
+                    { rank: "8", text: "Do you find that people at your university treat \"Science\" like it's a religion?" },
+                    { rank: "7", text: "How could your specific expertise be used as a \"platform\" for doing good globally?" },
+                    { rank: "6", text: "If the universe was designed by an Artist, what does your field of study reveal about the Artist's personality?" },
+                    { rank: "5", text: "Have you ever felt a sense of \"awe\" or \"worship\" while looking at a complex equation or microscope?" },
+                    { rank: "4", text: "What is the biggest scientific or technical challenge your home country is currently facing?" },
+                    { rank: "3", text: "Do you think science and faith are two different languages, or are they telling the same story?" },
+                    { rank: "2", text: "What is the most \"beautiful\" or \"elegant\" thing you've learned about the universe lately?" },
+                ]
+            }
+        };
 
-// ============== APP STATE ==============
-let state = {
-    view: 'home',
-    deck: [],
-    instructionsTab: 'rules',
-    currentCard: null,
-    discardPile: [],
-    players: [],
-    currentPlayerIndex: 0,
-    sharedLore: [],
-    feedbackPopupShown: false,
-    timerStarted: false
-};
+        // ============== APP STATE ==============
+        let state = {
+            view: 'home',
+            deck: [],
+            instructionsTab: 'rules',
+            currentCard: null,
+            discardPile: [],
+            players: [],
+            currentPlayerIndex: 0,
+            sharedLore: [],
+            feedbackPopupShown: false,
+            timerStarted: false
+        };
 
-// ============== HELPERS ==============
-function shuffle(array) {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-}
+        // ============== HELPERS ==============
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
 
-function buildDeck() {
-    const deck = [];
-    Object.entries(SUITS).forEach(([suitKey, suit]) => {
-        deck.push({
-            suit: suitKey,
-            rank: 'A',
-            isAction: true,
-            title: suit.action.title,
-            text: suit.action.text,
-            symbol: suit.symbol,
-            color: suit.color
-        });
-        suit.cards.forEach(card => {
-            deck.push({
-                suit: suitKey,
-                rank: card.rank,
-                isAction: false,
-                text: card.text,
-                symbol: suit.symbol,
-                color: suit.color
+        function buildDeck() {
+            const deck = [];
+            Object.entries(SUITS).forEach(([suitKey, suit]) => {
+                deck.push({
+                    suit: suitKey,
+                    rank: 'A',
+                    isAction: true,
+                    title: suit.action.title,
+                    text: suit.action.text,
+                    symbol: suit.symbol,
+                    color: suit.color
+                });
+                suit.cards.forEach(card => {
+                    deck.push({
+                        suit: suitKey,
+                        rank: card.rank,
+                        isAction: false,
+                        text: card.text,
+                        symbol: suit.symbol,
+                        color: suit.color
+                    });
+                });
             });
-        });
-    });
-    return shuffle(deck);
-}
+            return shuffle(deck);
+        }
 
-function getSuitColorClass(color, type = 'bg') {
-    const colors = {
-        spade: { bg: 'bg-spade', text: 'text-spade', border: 'border-spade' },
-        heart: { bg: 'bg-heart', text: 'text-heart', border: 'border-heart' },
-        diamond: { bg: 'bg-diamond', text: 'text-diamond', border: 'border-diamond' },
-        club: { bg: 'bg-club', text: 'text-club', border: 'border-club' },
-    };
-    return colors[color]?.[type] || 'bg-purple';
-}
+        function getSuitColorClass(color, type = 'bg') {
+            const colors = {
+                spade: { bg: 'bg-spade', text: 'text-spade', border: 'border-spade' },
+                heart: { bg: 'bg-heart', text: 'text-heart', border: 'border-heart' },
+                diamond: { bg: 'bg-diamond', text: 'text-diamond', border: 'border-diamond' },
+                club: { bg: 'bg-club', text: 'text-club', border: 'border-club' },
+            };
+            return colors[color]?.[type] || 'bg-purple';
+        }
 
-// ============== RENDER FUNCTIONS ==============
-function render() {
-    const app = document.getElementById('app');
-    switch(state.view) {
-        case 'home': app.innerHTML = renderHome(); break;
-        case 'play': app.innerHTML = renderPlay(); break;
-        case 'instructions': app.innerHTML = renderInstructions(); break;
-        case 'closing': app.innerHTML = renderClosing(); break;
-    }
-}
+        // ============== RENDER FUNCTIONS ==============
+        function render() {
+            const app = document.getElementById('app');
+            switch (state.view) {
+                case 'home': app.innerHTML = renderHome(); break;
+                case 'play': app.innerHTML = renderPlay(); break;
+                case 'instructions': app.innerHTML = renderInstructions(); break;
+                case 'closing': app.innerHTML = renderClosing(); break;
+            }
+        }
 
-function renderHome() {
-    return `
+        function renderHome() {
+            return `
     <div class="min-h-screen flex flex-col">
         <div class="flex-1 flex items-center justify-center p-6">
             <div class="max-w-4xl w-full">
@@ -247,7 +294,7 @@ function renderHome() {
                         ${['spade', 'heart', 'diamond', 'club'].map((color, i) => `
                             <div class="w-16 md:w-24 h-24 md:h-36 rounded-xl ${getSuitColorClass(color)} shadow-lg transform hover:scale-105 transition-transform flex items-center justify-center"
                                  style="transform: rotate(${(i - 1.5) * 8}deg)">
-                                <span class="text-white text-3xl md:text-5xl">${['♠','♥','♦','♣'][i]}</span>
+                                <span class="text-white text-3xl md:text-5xl">${['♠', '♥', '♦', '♣'][i]}</span>
                             </div>
                         `).join('')}
                     </div>
@@ -282,14 +329,14 @@ function renderHome() {
             <p>Frontier Commons Innovation Lab • International Friendships, Inc.</p>
         </footer>
     </div>`;
-}
+        }
 
-function renderPlay() {
-    const card = state.currentCard;
-    const remaining = state.deck.length;
-    const discarded = state.discardPile.length;
+        function renderPlay() {
+            const card = state.currentCard;
+            const remaining = state.deck.length;
+            const discarded = state.discardPile.length;
 
-    return `
+            return `
     <div class="min-h-screen flex flex-col p-4 md:p-6">
         <div class="flex justify-between items-center mb-6">
             <button onclick="navigate('home')" class="text-white/70 hover:text-white flex items-center gap-2">
@@ -341,10 +388,10 @@ function renderPlay() {
             </div>
         </div>
     </div>`;
-}
+        }
 
-function renderDeckStack() {
-    return `
+        function renderDeckStack() {
+            return `
     <div class="relative cursor-pointer" onclick="drawCard()">
         <div class="absolute w-48 h-72 bg-purple/80 rounded-2xl transform rotate-3 translate-x-2"></div>
         <div class="absolute w-48 h-72 bg-purple/90 rounded-2xl transform -rotate-2 -translate-x-1"></div>
@@ -354,15 +401,15 @@ function renderDeckStack() {
             <div class="mt-4 text-white/50 text-sm">${state.deck.length} cards</div>
         </div>
     </div>`;
-}
+        }
 
-function renderCurrentCard(card) {
-    const isAction = card.isAction;
-    const bgClass = isAction ? getSuitColorClass(card.color) : 'bg-white';
-    const textClass = isAction ? 'text-white' : 'text-gray-800';
-    const borderClass = isAction ? '' : `border-4 ${getSuitColorClass(card.color, 'border')}`;
+        function renderCurrentCard(card) {
+            const isAction = card.isAction;
+            const bgClass = isAction ? getSuitColorClass(card.color) : 'bg-white';
+            const textClass = isAction ? 'text-white' : 'text-gray-800';
+            const borderClass = isAction ? '' : `border-4 ${getSuitColorClass(card.color, 'border')}`;
 
-    return `
+            return `
     <div class="w-72 md:w-80 min-h-96 ${bgClass} ${borderClass} rounded-2xl shadow-2xl p-6 fade-in flex flex-col">
         <div class="flex justify-between items-start mb-4">
             <div>
@@ -388,18 +435,18 @@ function renderCurrentCard(card) {
             </p>
         </div>
     </div>`;
-}
+        }
 
-function renderInstructions() {
-    const tab = state.instructionsTab;
-    const tabs = [
-        { id: 'rules', label: 'How to Play' },
-        { id: 'cards', label: 'All Cards' },
-        { id: 'facilitator', label: "Facilitator's Guide" },
-        { id: 'closing', label: 'The Final Stone' },
-    ];
+        function renderInstructions() {
+            const tab = state.instructionsTab;
+            const tabs = [
+                { id: 'rules', label: 'How to Play' },
+                { id: 'cards', label: 'All Cards' },
+                { id: 'facilitator', label: "Facilitator's Guide" },
+                { id: 'closing', label: 'The Final Stone' },
+            ];
 
-    return `
+            return `
     <div class="min-h-screen p-4 md:p-6">
         <div class="max-w-5xl mx-auto">
             <div class="flex justify-between items-center mb-6">
@@ -439,10 +486,10 @@ function renderInstructions() {
             </div>
         </div>
     </div>`;
-}
+        }
 
-function renderInstructionsRules() {
-    return `
+        function renderInstructionsRules() {
+            return `
         <h2 class="font-display text-2xl font-bold text-navy mb-6">How to Play</h2>
 
         <div class="mb-8 p-4 bg-purple/5 rounded-xl">
@@ -456,12 +503,12 @@ function renderInstructionsRules() {
         <h3 class="font-semibold text-xl text-navy mb-4">Rules</h3>
         <div class="space-y-4 mb-8">
             ${[
-                { num: '1', title: 'Deal', text: 'Shuffle the deck and deal 5 cards to each player. Place the remaining deck face down in the center.' },
-                { num: '2', title: 'Share', text: 'Going clockwise order, each player chooses a card in their hand and answers the question. Then the card is placed in the discard pile.' },
-                { num: '3', title: 'The "Bridge Pass"', text: 'If a question feels too personal or you aren\'t ready to share, you can say <strong>"Pass"</strong> or <strong>"Under Construction,"</strong> and draw a new card from the deck. Your turn then ends.' },
-                { num: '4', title: 'Aces are Action Cards', text: 'You may play Aces as a special action any time before or after a player answers a question, triggering a special rule for that suit:<br>• <strong>The Referral</strong> (♠) - Nominate another player<br>• <strong>The Shared Table</strong> (♥) - Everyone answers<br>• <strong>The Translator</strong> (♦) - Use a metaphor or native word<br>• <strong>The Experiment</strong> (♣) - Veto or challenge' },
-                { num: '5', title: '"Winning the Game"', text: 'Play until everyone\'s hand is empty. This game is about journey and discovery, not winning!' },
-            ].map(rule => `
+                    { num: '1', title: 'Deal', text: 'Shuffle the deck and deal 5 cards to each player. Place the remaining deck face down in the center.' },
+                    { num: '2', title: 'Share', text: 'Going clockwise order, each player chooses a card in their hand and answers the question. Then the card is placed in the discard pile.' },
+                    { num: '3', title: 'The "Bridge Pass"', text: 'If a question feels too personal or you aren\'t ready to share, you can say <strong>"Pass"</strong> or <strong>"Under Construction,"</strong> and draw a new card from the deck. Your turn then ends.' },
+                    { num: '4', title: 'Aces are Action Cards', text: 'You may play Aces as a special action any time before or after a player answers a question, triggering a special rule for that suit:<br>• <strong>The Referral</strong> (♠) - Nominate another player<br>• <strong>The Shared Table</strong> (♥) - Everyone answers<br>• <strong>The Translator</strong> (♦) - Use a metaphor or native word<br>• <strong>The Experiment</strong> (♣) - Veto or challenge' },
+                    { num: '5', title: '"Winning the Game"', text: 'Play until everyone\'s hand is empty. This game is about journey and discovery, not winning!' },
+                ].map(rule => `
                 <div class="flex gap-4 items-start">
                     <div class="w-8 h-8 rounded-full bg-purple text-white flex items-center justify-center font-bold flex-shrink-0">${rule.num}</div>
                     <div>
@@ -485,10 +532,10 @@ function renderInstructionsRules() {
             `).join('')}
         </div>
     `;
-}
+        }
 
-function renderInstructionsCards() {
-    return `
+        function renderInstructionsCards() {
+            return `
         <h2 class="font-display text-2xl font-bold text-navy mb-6">Complete Card Reference</h2>
 
         ${Object.entries(SUITS).map(([key, suit]) => `
@@ -521,10 +568,10 @@ function renderInstructionsCards() {
             </div>
         `).join('')}
     `;
-}
+        }
 
-function renderInstructionsFacilitator() {
-    return `
+        function renderInstructionsFacilitator() {
+            return `
         <h2 class="font-display text-2xl font-bold text-navy mb-2">Facilitator's Guide</h2>
         <p class="text-gray-500 mb-8">For ISM Staff & Group Leaders</p>
 
@@ -600,10 +647,10 @@ function renderInstructionsFacilitator() {
             </div>
         </div>
     `;
-}
+        }
 
-function renderInstructionsClosing() {
-    return `
+        function renderInstructionsClosing() {
+            return `
         <div class="text-center max-w-2xl mx-auto">
             <h2 class="font-display text-2xl font-bold text-navy mb-6">The Closing</h2>
 
@@ -624,11 +671,11 @@ function renderInstructionsClosing() {
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     ${[
-                        { icon: '♠', name: 'Careers', desc: 'Dreams & ambitions' },
-                        { icon: '♥', name: 'Homes', desc: 'Belonging & family' },
-                        { icon: '♦', name: 'Cultures', desc: 'Identity & wisdom' },
-                        { icon: '♣', name: 'Wonders', desc: 'Science & faith' },
-                    ].map(pillar => `
+                    { icon: '♠', name: 'Careers', desc: 'Dreams & ambitions' },
+                    { icon: '♥', name: 'Homes', desc: 'Belonging & family' },
+                    { icon: '♦', name: 'Cultures', desc: 'Identity & wisdom' },
+                    { icon: '♣', name: 'Wonders', desc: 'Science & faith' },
+                ].map(pillar => `
                         <div class="bg-white rounded-xl p-4 shadow-sm border-2 border-purple/20">
                             <div class="text-3xl mb-2">${pillar.icon}</div>
                             <div class="font-semibold text-navy text-sm">${pillar.name}</div>
@@ -647,10 +694,10 @@ function renderInstructionsClosing() {
             </div>
         </div>
     `;
-}
+        }
 
-function renderClosing() {
-    return `
+        function renderClosing() {
+            return `
     <div class="min-h-screen flex items-center justify-center p-4 md:p-8">
         <div class="max-w-2xl w-full">
             <div class="bg-cream rounded-3xl p-8 md:p-12 shadow-xl text-center">
@@ -690,88 +737,89 @@ function renderClosing() {
             </div>
         </div>
     </div>`;
-}
-
-// ============== GAME LOGIC ==============
-function navigate(view) {
-    state.view = view;
-    render();
-}
-
-function setInstructionsTab(tab) {
-    state.instructionsTab = tab;
-    render();
-}
-
-function startGame() {
-    state.deck = buildDeck();
-    state.currentCard = null;
-    state.discardPile = [];
-    state.sharedLore = [];
-    state.view = 'play';
-    startFeedbackTimer();
-    render();
-}
-
-function startFeedbackTimer() {
-    if (state.timerStarted) return;
-    state.timerStarted = true;
-    setTimeout(() => {
-        if (!state.feedbackPopupShown) {
-            openFeedback(true);
         }
-    }, 5 * 60 * 1000); // 5 minutes
-}
 
-function openFeedback(isAuto = false) {
-    const modal = document.getElementById('feedback-modal');
-    modal.classList.remove('hidden');
-    state.feedbackPopupShown = true;
-    
-    const note = document.getElementById('auto-popup-note');
-    if (isAuto) {
-        note.classList.remove('hidden');
-    } else {
-        note.classList.add('hidden');
-    }
-}
+        // ============== GAME LOGIC ==============
+        function navigate(view) {
+            state.view = view;
+            render();
+        }
 
-function closeFeedback() {
-    document.getElementById('feedback-modal').classList.add('hidden');
-}
+        function setInstructionsTab(tab) {
+            state.instructionsTab = tab;
+            render();
+        }
 
-function resetGame() {
-    startGame();
-}
+        function startGame() {
+            state.deck = buildDeck();
+            state.currentCard = null;
+            state.discardPile = [];
+            state.sharedLore = [];
+            state.view = 'play';
+            startFeedbackTimer();
+            render();
+        }
 
-function drawCard() {
-    if (state.deck.length === 0) return;
-    state.currentCard = state.deck.pop();
-    render();
-}
+        function startFeedbackTimer() {
+            if (state.timerStarted) return;
+            state.timerStarted = true;
+            setTimeout(() => {
+                if (!state.feedbackPopupShown) {
+                    openFeedback(true);
+                }
+            }, 5 * 60 * 1000); // 5 minutes
+        }
 
-function answerCard() {
-    if (state.currentCard) {
-        state.discardPile.push(state.currentCard);
-        state.sharedLore.push(state.currentCard);
-        state.currentCard = null;
-    }
-    render();
-}
+        function openFeedback(isAuto = false) {
+            const modal = document.getElementById('feedback-modal');
+            modal.classList.remove('hidden');
+            state.feedbackPopupShown = true;
 
-function bridgePass() {
-    if (state.currentCard) {
-        state.currentCard = null;
-    }
-    if (state.deck.length > 0) {
-        drawCard();
-    } else {
-        render();
-    }
-}
+            const note = document.getElementById('auto-popup-note');
+            if (isAuto) {
+                note.classList.remove('hidden');
+            } else {
+                note.classList.add('hidden');
+            }
+        }
 
-// ============== INIT ==============
-document.addEventListener('DOMContentLoaded', render);
+        function closeFeedback() {
+            document.getElementById('feedback-modal').classList.add('hidden');
+        }
+
+        function resetGame() {
+            startGame();
+        }
+
+        function drawCard() {
+            if (state.deck.length === 0) return;
+            state.currentCard = state.deck.pop();
+            render();
+        }
+
+        function answerCard() {
+            if (state.currentCard) {
+                state.discardPile.push(state.currentCard);
+                state.sharedLore.push(state.currentCard);
+                state.currentCard = null;
+            }
+            render();
+        }
+
+        function bridgePass() {
+            if (state.currentCard) {
+                state.currentCard = null;
+            }
+            if (state.deck.length > 0) {
+                drawCard();
+            } else {
+                render();
+            }
+        }
+
+        // ============== INIT ==============
+        document.addEventListener('DOMContentLoaded', render);
     </script>
 </body>
+
 </html>

@@ -8,7 +8,7 @@ interface VideoState {
 }
 
 // Default video URL (you can change this to your actual YouTube/Vimeo embed URL)
-const DEFAULT_VIDEO_URL = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+const DEFAULT_VIDEO_URL = "https://drive.google.com/file/d/1lZXRRptIIrdqIK9W59ASTSXoc0eBQSYndHs9xQt6s_Y/preview";
 
 export const useVideoStore = create<VideoState>((set) => ({
     isOpen: true, // Open by default as per plan.md

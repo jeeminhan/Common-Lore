@@ -6,12 +6,12 @@ import JoinRoom from './pages/JoinRoom';
 import Game from './pages/Game';
 import SessionReview from './pages/SessionReview';
 import HowToPlay from './pages/HowToPlay';
-import FeedbackProvider from './components/feedback/FeedbackProvider';
+import GlobalOverlay from './components/GlobalOverlay';
 
 function App() {
   return (
     <div className="min-h-screen bg-navy-900">
-      <FeedbackProvider />
+      <GlobalOverlay />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/solo" element={<SoloPlay />} />

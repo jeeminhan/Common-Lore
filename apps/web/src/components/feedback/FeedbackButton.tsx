@@ -9,7 +9,7 @@ export default function FeedbackButton() {
   return (
     <motion.button
       onClick={() => openFeedback()}
-      className="fixed bottom-6 right-6 z-40 bg-purple text-white px-4 py-3 rounded-full shadow-lg hover:bg-purple-light transition-all flex items-center gap-3 border border-white/20"
+      className="fixed bottom-6 left-6 z-40 bg-purple text-white px-4 py-3 rounded-full shadow-lg hover:bg-purple-light transition-all flex items-center gap-3 border border-white/20"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.05 }}

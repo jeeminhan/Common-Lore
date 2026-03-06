@@ -1,0 +1,224 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Georgia', serif;
+  background: #F5F5F7;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+.hero {
+  background: #0D1117;
+  color: #fff;
+  padding: 64px 24px 52px;
+}
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-org {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 16px;
+}
+.hero-title {
+  font-size: clamp(3.5rem, 9vw, 6.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #ffffff 40%, #888888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-tagline {
+  font-size: 1.1rem;
+  color: #bbb;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+.hero-rules {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.rule {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 16px 18px;
+  text-align: left;
+  max-width: 230px;
+}
+.rule-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.rule strong { display: block; margin-bottom: 4px; font-size: 0.9rem; color: #fff; }
+.rule p { font-size: 0.8rem; color: #999; }
+.hero-suits {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.suit-pill {
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+.suit-pill.spades   { background: #1B2A6B; color: #E8EBFF; }
+.suit-pill.hearts   { background: #8B1A1A; color: #FFE8E8; }
+.suit-pill.diamonds { background: #C17900; color: #FFF8E1; }
+.suit-pill.clubs    { background: #1B5E20; color: #E8F5E9; }
+
+.suit-section {
+  max-width: 1400px;
+  margin: 48px auto;
+  padding: 0 24px;
+}
+.suit-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--suit-color);
+}
+.suit-symbol { font-size: 2.2rem; color: var(--suit-color); line-height: 1; }
+.suit-name   { font-size: 1.7rem; font-weight: 700; color: var(--suit-color); }
+.suit-sub    { font-size: 0.95rem; color: #777; font-style: italic; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+.card {
+  border-radius: 12px;
+  aspect-ratio: 2.5 / 3.5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  position: relative;
+}
+
+/* Ace card (always face-up, no flip) */
+.card.ace {
+  background: var(--suit-color);
+  border: 2.5px solid var(--suit-color);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 10px 14px;
+}
+.card.ace .card-rank { color: rgba(255,255,255,0.7); }
+.card.ace .card-body { color: rgba(255,255,255,0.95); }
+.ace-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+/* Flippable question cards */
+.card.question {
+  cursor: pointer;
+  perspective: 800px;
+  background: transparent;
+  border: none;
+}
+.card.question:hover .card-inner {
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+.card-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.card.question.face-up .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.card-back {
+  background: var(--suit-color);
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  opacity: 0.88;
+}
+.card-back-symbol {
+  font-size: 3.5rem;
+  color: rgba(255,255,255,0.2);
+  line-height: 1;
+}
+.card-back-label {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.card-front {
+  transform: rotateY(180deg);
+  background: #fff;
+  border: 2.5px solid var(--suit-color);
+  padding: 12px 10px 14px;
+}
+
+.card-rank {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--suit-color);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.card-rank .sym { font-size: 0.8rem; }
+.card-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #222;
+  padding: 6px 2px;
+}
+.site-footer {
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 0.78rem;
+  color: #aaa;
+  border-top: 1px solid #ddd;
+  margin-top: 32px;
+}

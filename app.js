@@ -8,6 +8,20 @@ function flipCard(el) {
   activeCard = el.classList.contains('face-up') ? el : null;
 }
 
+function toggleShowAll(btn, grid) {
+  const cards = grid.querySelectorAll('.card.question');
+  const allShown = [...cards].every(c => c.classList.contains('face-up'));
+  if (allShown) {
+    cards.forEach(c => c.classList.remove('face-up'));
+    if (activeCard && grid.contains(activeCard)) activeCard = null;
+    btn.textContent = 'Show All';
+  } else {
+    cards.forEach(c => c.classList.add('face-up'));
+    activeCard = null;
+    btn.textContent = 'Hide All';
+  }
+}
+
 function renderSuits() {
   const container = document.getElementById('suits-container');
   SUITS.forEach(suit => {
@@ -19,11 +33,14 @@ function renderSuits() {
         <span class="suit-symbol">${suit.symbol}</span>
         <span class="suit-name">${suit.name}:</span>
         <span class="suit-sub">${suit.subtitle} — ${suit.theme}</span>
+        <button class="show-all-btn" data-suit="${suit.id}">Show All</button>
       </div>
       <div class="card-grid" id="grid-${suit.id}"></div>
     `;
     container.appendChild(section);
     const grid = section.querySelector(`#grid-${suit.id}`);
+    const showAllBtn = section.querySelector('.show-all-btn');
+    showAllBtn.addEventListener('click', () => toggleShowAll(showAllBtn, grid));
 
     // Ace — always visible, no flip
     const ace = document.createElement('div');
